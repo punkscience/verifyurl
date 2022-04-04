@@ -3,7 +3,7 @@ A quick golang module/function to verify that a given URL is well formed and ens
 ## Installation
 go get github.com/punkscience/verifyurl
 ## Usage
-`
+```
   package main
   
   import (
@@ -19,7 +19,7 @@ go get github.com/punkscience/verifyurl
       log.Println( "Something has gone horribly wrong with Google.", err )
     }
   }
-`
+```
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
