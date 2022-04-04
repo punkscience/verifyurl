@@ -15,11 +15,21 @@ func Verify(testurl string) error {
 	}
 
 	// Try to get it and ensure it comes back with 200
-	resp, _ := http.Get(testurl)
+	resp, err := http.Get(testurl)
 
-	if resp.StatusCode != 200 {
+	if err != nil {
+		return err
+	}
+
+	// Make sure we close the body so we're not leaving anything hanging. 
+	// We don't need to read the body since we're only checking status.
+	defer resp.Body.Close()
+
+	// Either we succeeded or we didn't
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
 		return fmt.Errorf("file %s not found, TCP status code: %d", testurl, resp.StatusCode)
 	}
 
 	return nil
 }
+
